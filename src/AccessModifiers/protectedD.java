@@ -9,7 +9,7 @@ class ProteDed
 	}
 }
 
-class protectEDd extends ProteDed
+class protectEDdd extends ProteDed
 {
 	void print()
 	{
