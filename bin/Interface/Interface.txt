@@ -1,0 +1,32 @@
+  Interface cannot have Objects
+
+  Each class that implements an interface must implement all of the methods of the interface
+
+  Variables can be declared inside interface.They are implicitly final and static.
+  They must be initialized. we can't assign value to variables in another class.
+
+  The methods that implements Interface must be declared as public.
+
+  Interface variable can reference the object of a class which implement the interface.
+  It is similar as superclass variable can reference subclass object.
+  
+  Partial Implementations:
+  If a class includes an interface but does not fully implement the methods required by that
+  interface, then that class must be declared as abstract.but the chiled class of that class must implement all of 
+  the methods of interface
+  
+  Nested interfaces:
+  An interface can be declared a member of a class or another interface. Such an interface
+  is called a member interface or a nested interface.
+  
+  Variables in Interfaces:
+  
+  Inheriting Interfaces:
+  one interface can inherit another interface.
+  
+  Default methods or extension methods:
+  
+  
+  problem of having default methods:
+  
+  
