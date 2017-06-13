@@ -1,0 +1,309 @@
+    1.Throwable parent class for all exceptions
+    
+    1.1 Exception   
+    1.2 Error
+    
+    Exception occurs because of programmers
+    Exception can be resolved
+    
+    Error occurs because of system environment or lack of system resources
+    Error cannot resolved by programmer
+    -----------------------------------------------------------------------------------------
+     1.checked exception 
+     2.unchecked exception
+    
+    RuntimeException and Error are unchecked exception
+    Other than above two are checked Exception
+    
+    1.fully checked 
+    2.partially checked
+    
+    partially checked exception - throwable,Exception
+    fully checked exception     - Other than above two are fully checked exception
+    
+    --------------------------------------------------------------------------------------------
+    Exception can occur even inside of catchBlock e8
+    Nested exception handling
+    ----------------------------------------------------------------------------------------------
+    PRINTING EXCEPTION DETAILS  e7
+    
+    methods to print exception
+    these are declared in throwable
+    
+    System.out.println(exceptionOBJECT); is same as System.out.println(toString.exceptionOBJECT); 
+    it prints all details without stack trace
+    
+    exceptionOBJECT.printStackTrace();
+    it prints all details
+    
+    exceptionOBJECT.getMessage();
+    just prints exception description
+    -----------------------------------------------------------------------------------------------
+    LOOP HOLES  e3 e19
+    
+    after Exception in catch block there is no catch block is allowed
+    because Exception can handle all types of exception
+    
+    in try catch if we handling checked exceptions the inside the try must be relevant to checked exception type
+    
+    
+    ------------------------------------------------------------------
+    FLOW OF EXCEPTION e9
+    
+    if exception occurs in statement1 at a block, the statement2,statement_n will be  never get executed
+    
+    if exception not handled the termination will be ubnormal and program will be stopped after 
+    getting exception
+    _____________________________________________________________________________________________
+    GOOD PRACTICES
+    
+    length of the try block must be as less as possible
+    ____________________________________________________________________________________
+    
+    TRY CATCH FINALIZE FINALLY
+    
+    TRY - risk code
+    CATCH - handling code
+    FINALLY - cleanup code
+    ______________________________________________________________________________________
+    
+    FINALLY
+    
+    finally will be executed irrespective of exception raised or not raised whether handled or not handled
+    it will be always executed
+    finally is responsible to perform cleanup activities for try block
+    ______________________________________________________________________________________
+    
+    FINALIZE 
+    
+    finalize always called by garbage collector just before destroying object to perform cleanup activities
+    ___________________________________________________________________________________________
+    
+    combination of try catch finally
+    
+    rules:
+    
+    1. in try catch finally order is important
+    2. whenever we are writing try compulsory we should write either catch or finally
+       try without catch or finally is invalid
+    3. whenever we are writing catch block or finally try is compulsory 
+    4. inside try catch and finally blocks we can declare we can declare try catch and finally block
+    5. for try catch and finally blocks curly braces are mandatory
+    6. any Statement between try catch and finally blocks is not permitted
+    7. try catch and finally can't be alone.here try is mandatory
+    8. we can't have two finally or two catch block with same exception
+    _____________________________________________________________________________________________
+    
+    try catch(ArithmeticException a) catch(ArithmeticException a) - not valid
+    
+    try catch(Exception a)           catch(ArithmeticException a) - not valid
+    
+    try - single not valid 
+    
+    catch - single not valid
+    
+    finally - single not valid
+    ______________________________________________________________________________________________
+    
+    THROW KEYWORD e10-e14
+    
+    it is used to throw customized user defined exceptions
+    programmer can create their own exception object and handover it to jvm manually
+    throw keyword handover the exception object to the jvm
+    here we can manually handingover the exception
+    normally  method is responsible for creating exception object and giving to jvm
+    
+    we can only throw objects of classes which are subclasses of throwable
+    
+    throw keyword is more useful for customized or user defined exception than predefined exceptions 
+    
+    _______________________________________________________________________________________________
+    
+    THROWS KEYWORD e16
+    
+    in our program if there is possibility of  checked exception  then compulsory we should handle
+    handle that checked exception. otherwise we will get compile time error saying unreported exception must be caught or declared to be thrown
+    
+    we handle checked exception in two ways
+    1.try catch
+    2.throws
+    
+    throws keyword is user to delegate the responsibility of exception handling to the caller method.
+    the caller method maybe another method or jvm. then caller method responsible to handle that exception
+    
+    conclusion:
+    
+    only for checked exception
+    
+    throws keyword is only for convincing compiler.
+    
+    usage of throws keyword does not prevent abnormal termination 
+    
+    so it is advised to use try catch instead of throws
+    
+    we can apply throws keyword for only methods and constructors
+    --------------------------------------------------------------------------------------------------
+    various compile time errors
+    
+    unreported exception xxx; must be caught or declared to be thrown
+    
+    exception xxx has already been caught
+    
+    exception xxx is  never thrown in body of corresponding try statement
+    
+    unreachable statement
+    
+    incompatible types found
+    
+    try without catch or finally
+    
+    catch without try
+    
+    finally without try
+    ---------------------------------------------------------------------------
+    CUSTOMISED OR USER  DEFINED EXCEPTIONS e20
+    
+    sometimes to meet programming requirements we can define our own exceptions. such
+    type of exceptions are called as customized or user defined exceptions
+    
+    Example:
+    
+    TooYoungException
+    TooOldException
+    
+    while creating user defined exception class, the class must be a direct or indirect 
+    subclass of Throwable.
+    
+    so it is recommended to extends unchecked exception. because if we extend checked exception
+    we have to handle exception. 
+    so we have to extend RuntimeException
+    ---------------------------------------------------------------------------
+    top 10 exceptions e21
+    
+    checked exception
+    unchecked exception
+    
+    jvm exception                                     - arithmetic exception
+    programmatic exception   user defined exception   - TooYoungException
+                             API developer exception  - Exceptions in string class
+                                                        Exceptions in thread class
+    
+    NoclassDeFound Exception:
+    c:\\user\\programming: java test // when no test file exits
+  
+    NoclassDefFound: test
+    
+    ----------------------------------------------------------------------------------------------
+    in java 1.7 two of these concepts are  introduced
+    
+    1. try with resource
+    2. multiple catch block
+    
+    
+    try with resources:
+    
+    we have to close the resources in finally block which we opened in try block. before 1.7
+    resources opened in try will be automatically closed. no need to write finally block to close
+    opened resources.
+    
+    before 1.7          |    after 1.7
+                        |
+    try                 |  try( resource1;resource2;resource3)                        
+    {                   |  {
+    opening resources   |  opening resources
+    }                   |  }
+    finally             |   // resources will be automatically closed at end of the try block
+    {                   |  // it is highly recommended to have finally block to closed the  resources
+    closing resources   |  // length of code reduced and readability improved
+    }                   |
+    
+    
+    java 1.7 has autoClosable Interface
+    
+    resources should be autoClosable
+    autoClosable resources - must be implemented autoClosable interface 
+    
+    THE BELOW RESOURCES ARE AUTOCLOSABLE
+    
+    i/o related resources
+    networking related resources
+    database related resources
+    
+    e23
+    
+    all resource reference variables we declared in try block are implicitly final.
+    so we cannot perform reassignment . otherwise we will get compile time error
+    
+    before 1.7           after 1.7
+    
+    try                  try(r1;r2)        
+    {                    {
+                              // we can have simple try with resources without catch or finally
+    }                    }
+    finally 
+    {
+      // try without catch or finally will become error!
+    }
+    
+    multiple catch block: e24
+    
+    we can handle multiple different types of exceptions in single catch block to reduce the code
+    
+    before 1.7                              after 1.7
+    
+    try                                     try
+    {                                       {
+    }                                       }
+    catch(ArithmeticException e)            catch(ArithmeticException|IoException object)
+    {                                       {
+    }                                       }
+    catch(IoException e)
+    {
+    
+    }
+    
+    BEAWARE IN MULTIPLE CATCH BLOCK e25
+   
+    Exception propagation
+    
+    inside a method exception raised and if we are not handling that exception then the caller 
+    method to responsible to handle that exception. this process is called exception propagation
+    
+    --------------------------------------------------------------------------------------------
+    RethroWing exception:
+    
+    we can use this approach to convert one exception type to another exception type
+    
+    try
+    {
+      System.out.println(1/0);
+    }
+    catch(ArithmeticException e)
+    {
+       throw new NullPointerException;
+    }
+    
+    -----------------------------------------------------------------------------------------------
+    chained Exceptions?
+    
+    
+                                                 
+    
+      
+    
+    
+    
+   
+    
+    
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     
